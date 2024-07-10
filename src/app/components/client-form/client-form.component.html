@@ -1,0 +1,47 @@
+<div class="header-container">
+    <h2 class="header-title">Creación de cliente</h2>
+    <p class="header-subtitle">Por favor, complete los siguientes campos:</p>
+</div>
+<form class="form-container" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+        <mat-label>Cédula</mat-label>
+        <input matInput formControlName="idCard">
+        <mat-error *ngIf="clientForm.get('idCard')?.invalid && clientForm.get('idCard')?.touched">Cédula es
+            requerida</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched">Nombre es
+            requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="address">
+        <mat-error *ngIf="clientForm.get('address')?.invalid && clientForm.get('address')?.touched">Dirección es
+            requerida</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="phone">
+        <mat-error *ngIf="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched">Teléfono es
+            requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-error *ngIf="clientForm.get('email')?.hasError('required') && clientForm.get('email')?.touched">Email es
+            requerido</mat-error>
+        <mat-error *ngIf="clientForm.get('email')?.hasError('email') && clientForm.get('email')?.touched">Email no
+            válido</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="clientForm.invalid || loading">
+        <span *ngIf="!loading">Crear Cliente</span>
+        <mat-spinner *ngIf="loading" diameter="20"></mat-spinner> <!-- Spinner de carga -->
+    </button>
+</form>

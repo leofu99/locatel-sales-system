@@ -1,1 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 270px;
+}
+
+mat-nav-list a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  padding: 15px;
+  justify-content: space-around;
+  align-content: center;
+
+  mat-icon {
+    margin-right: 10px;
+  }
+}
+
+mat-nav-list a.active {
+  font-weight: 500;
+  background-color: rgba(63, 81, 181, 0.85) !important; 
+  border-radius: 0 40px 40px 0;
+  color: white!important;
+ 
+}
+
+.mat-toolbar.mat-primary {
+  background-color: rgb(63, 81, 181, 0.1);
+  color: rgba(0, 0, 0, 0.605);
+}
+.header-container {
+  text-align: start;
+  margin-bottom: 20px;
+  background-color: rgba(63, 81, 181, 0.85);
+  padding: 20px;
+}
+
+.header-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.header-subtitle {
+  font-size: 16px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.client-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.form-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+button {
+  margin-top: 20px;
+  position: relative;
+}
+
+mat-spinner {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 10px); /* Ajusta el spinner al centro del botón */
+  transform: translateY(-50%);
+}

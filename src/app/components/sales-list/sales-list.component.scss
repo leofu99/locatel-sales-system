@@ -1,0 +1,50 @@
+/* sales-list.component.scss */
+
+.sales-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
+  margin: 0 auto;
+}
+
+.sale-card {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.card-content {
+  width: 100%;
+}
+
+.card-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-item {
+  margin-right: 16px;
+  flex: 1; /* Ocupa todo el espacio disponible */
+}
+
+.details-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%; /* Tamaño del panel lateral */
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-out;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.details-panel.show {
+  transform: translateX(0);
+}

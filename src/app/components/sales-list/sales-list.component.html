@@ -1,0 +1,21 @@
+<!-- sales-list.component.html -->
+
+<div class="sales-list">
+    <mat-card *ngFor="let sale of sales" class="sale-card">
+        <mat-card-content class="card-content">
+            <div class="card-row">
+                <div class="card-item"><strong>Factura:</strong> {{ sale.invoice_number }}</div>
+                <div class="card-item"><strong>Cliente:</strong> {{ sale.customer.name }}</div>
+                <div class="card-item"><strong>Total Venta:</strong> {{ sale.total_sale | currency }}</div>
+                <div class="card-item"><strong>Fecha:</strong> {{ sale.sale_date | date }}</div>
+                <div class="card-item">
+                    <button mat-button color="primary" (click)="toggleDetailsPanel(sale)">Ver Detalles</button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="details-panel" *ngIf="selectedSale">
+        <app-sale-details [selectedSale]="selectedSale" (closeDetails)="closeDetailsPanel()"></app-sale-details>
+    </div>
+</div>

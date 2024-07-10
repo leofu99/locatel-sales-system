@@ -1,0 +1,17 @@
+.error-message {
+    color: #f44336; /* Color rojo para el mensaje de error */
+    margin-top: 10px;
+    white-space: pre-line; /* Para que los saltos de línea en el mensaje de error se muestren correctamente */
+  }
+  
+  .detail-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field {
+    flex: 1;
+  }

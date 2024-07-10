@@ -1,0 +1,78 @@
+<div class="header-container">
+    <h2 class="header-title">Registro de Venta</h2>
+    <p class="header-subtitle">Por favor, complete los siguientes campos:</p>
+</div>
+
+<form [formGroup]="saleForm" (ngSubmit)="onSubmit()" class="form-container">
+    <mat-form-field appearance="outline">
+        <mat-label>Número de Factura</mat-label>
+        <input matInput formControlName="invoiceNumber" required>
+        <mat-error *ngIf="saleForm.get('invoiceNumber')?.invalid && saleForm.get('invoiceNumber')?.touched">
+            Número de Factura es requerido
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="customer" required>
+            <mat-option *ngFor="let customer of customers" [value]="customer.id">
+                {{ customer.name }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="saleForm.get('customer')?.invalid && saleForm.get('customer')?.touched">
+            Cliente es requerido
+        </mat-error>
+    </mat-form-field>
+
+    <div formArrayName="details" *ngFor="let detail of details.controls; let i = index;">
+        <div [formGroupName]="i">
+            <mat-form-field appearance="outline">
+                <mat-label>Producto</mat-label>
+                <mat-select formControlName="product" required>
+                    <mat-option *ngFor="let product of products" [value]="product.id">
+                        {{ product.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="detail.get('product')?.invalid && detail.get('product')?.touched">
+                    Producto es requerido
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Precio del Producto</mat-label>
+                <input matInput type="number" formControlName="productPrice" [disabled]="true">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Cantidad</mat-label>
+                <input matInput type="number" formControlName="quantity" required>
+                <mat-error *ngIf="detail.get('quantity')?.invalid && detail.get('quantity')?.touched">
+                    Cantidad es requerida y debe ser mayor a 0
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>IVA</mat-label>
+                <input matInput type="number" formControlName="iva" [disabled]="true">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Subtotal</mat-label>
+                <input matInput type="number" formControlName="subTotal" [disabled]="true">
+            </mat-form-field>
+        </div>
+        <button mat-button (click)="removeDetail(i)">Eliminar</button>
+    </div>
+
+    <button mat-button (click)="addDetail()">Agregar Detalle</button>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Total de la Venta</mat-label>
+        <input matInput type="number" formControlName="totalSale" [disabled]="true">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="saleForm.invalid || loading">
+        <span *ngIf="!loading">Registrar Venta</span>
+        <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+    </button>
+</form>
